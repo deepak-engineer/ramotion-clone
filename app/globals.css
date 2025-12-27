@@ -57,3 +57,121 @@ html {
     gap: 60px !important;
   }
 }
+
+/* Testimonials Section Styles */
+.testimonials-wrapper .testimonials-slider {
+  position: relative;
+}
+
+.testimonials-wrapper .testimonials-slider .controls {
+  z-index: 10;
+}
+
+.testimonials-wrapper .testimonials-slider .controls button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.testimonials-wrapper .testimonials {
+  margin: 54px 0 0;
+}
+
+@media (max-width: 1024px) {
+  .testimonials-wrapper .testimonials {
+    margin: 0;
+  }
+}
+
+/* Testimonials animations */
+.testimonials-item {
+  animation: fadeSlideIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.testimonials-logo {
+  animation: logoFadeIn 0.6s ease-out forwards;
+}
+
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.testimonials-quote {
+  animation: quoteSlideIn 0.5s ease-out 0.1s forwards;
+  opacity: 0;
+}
+
+@keyframes quoteSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.testimonials-author {
+  animation: authorFadeIn 0.5s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+@keyframes authorFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Blockquote styling */
+.testimonials-quote p::before {
+  content: "\201C";
+}
+
+.testimonials-quote p::after {
+  content: "\201D";
+}
+
+/* Contact button hover animation */
+.contact-us {
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-us::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.contact-us:hover::before {
+  left: 100%;
+}
