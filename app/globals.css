@@ -39,3 +39,21 @@ html {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
+
+/* Listboard grid - responsive layouts */
+@media (max-width: 1024px) {
+  .listboard {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 40px !important;
+  }
+  .listboard .card {
+    grid-area: auto !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .listboard {
+    grid-template-columns: 1fr !important;
+    gap: 60px !important;
+  }
+}
