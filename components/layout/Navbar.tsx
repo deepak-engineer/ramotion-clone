@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/work", label: "Work" },
@@ -25,6 +26,7 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -32,15 +34,16 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[1001] transition-transform duration-300 ${
-        scrolled ? "bg-[#fafafa]" : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-[1001] transition-all duration-300 ${scrolled
+        ? "bg-[#fafafa]/95 backdrop-blur-md shadow-sm"
+        : "bg-transparent"
+        }`}
     >
       {/* Background */}
       <div className="py-5 max-md:py-2.5">
@@ -97,9 +100,8 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <div
                 key={link.href}
-                className={`nav-item relative whitespace-nowrap ${
-                  link.hasDropdown ? "group static" : ""
-                }`}
+                className={`nav-item relative whitespace-nowrap ${link.hasDropdown ? "group static" : ""
+                  }`}
               >
                 {link.hasDropdown ? (
                   <>
@@ -156,9 +158,14 @@ export default function Navbar() {
                     href={link.href}
                     className="group/link relative block px-4 py-2 text-[16px] text-[#262626] transition-colors duration-300"
                   >
-                    <span>{link.label}</span>
-                    {/* Underline animation */}
-                    <span className="absolute bottom-1 left-4 h-[1px] w-0 bg-black transition-all duration-100 ease-out group-hover/link:w-[calc(100%-32px)]" />
+                    <span className={pathname === link.href ? "font-medium" : ""}>
+                      {link.label}
+                    </span>
+                    {/* Active/Underline animation */}
+                    <span
+                      className={`absolute bottom-1 left-4 h-[1px] bg-black transition-all duration-300 ease-out 
+                        ${pathname === link.href ? "w-[calc(100%-32px)]" : "w-0 group-hover/link:w-[calc(100%-32px)]"}`}
+                    />
                   </Link>
                 )}
               </div>
@@ -291,66 +298,80 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 top-[60px] z-40 bg-white transition-all duration-300 md:hidden ${
-          mobileMenuOpen
-            ? "pointer-events-auto opacity-100"
-            : "pointer-events-none opacity-0"
-        }`}
+        className={`fixed inset-0 z-[2000] bg-white transition-all duration-500 ease-[cubic-bezier(0.85,0,0.15,1)] md:hidden ${mobileMenuOpen ? "translate-y-0" : "-translate-y-full"
+          }`}
       >
-        <div className="flex flex-col gap-4 px-4 py-6">
-          {navLinks.map((link) => (
-            <div key={link.href}>
-              <Link
-                href={link.href}
-                className="flex items-center gap-2 py-2 text-xl font-medium text-[#262626]"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.label}
-                {link.hasDropdown && (
-                  <svg
-                    width="17"
-                    height="16"
-                    viewBox="0 0 17 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M8.80077 11L5.33667 5L12.2649 5L8.80077 11Z"
-                      fill="#262626"
-                    />
-                  </svg>
-                )}
-              </Link>
-            </div>
-          ))}
-          <div className="mt-4 flex flex-col gap-3">
+        <div className="flex h-full flex-col p-8 pt-[120px]">
+          <nav className="flex flex-col gap-6">
+            {navLinks.map((link) => (
+              <div key={link.href} className="overflow-hidden">
+                <Link
+                  href={link.href}
+                  className="group flex items-center gap-4 py-2 text-[48px] font-bold tracking-tight text-[#262626] transition-transform duration-300 active:scale-95"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.label}
+                  {link.hasDropdown && (
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 32 32"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="relative top-[4px]"
+                    >
+                      <path
+                        d="M26.2905 12.8122L11.6217 27.481L13.743 29.6023L31.1824 12.1629L13.743 4.72351L11.6217 6.84483L26.293 21.5149H0.787354V24.5149L26.2905 12.8122Z"
+                        fill="black"
+                        className="scale-[0.5] origin-center"
+                      />
+                    </svg>
+                  )}
+                </Link>
+              </div>
+            ))}
+          </nav>
+
+          <div className="mt-auto flex flex-col gap-4">
             <Link
               href="/subscribe"
-              className="rounded-[20px] border border-[#262626] px-6 py-3 text-center text-[16px] font-medium text-[#262626]"
+              className="text-[32px] font-bold tracking-tight text-[#262626]"
               onClick={() => setMobileMenuOpen(false)}
             >
               Subscribe
             </Link>
             <Link
               href="/contact"
-              className="flex items-center justify-center gap-2 rounded-[20px] bg-[#262626] px-6 py-3 text-[16px] font-medium text-white"
+              className="text-[32px] font-bold tracking-tight text-[#262626]"
               onClick={() => setMobileMenuOpen(false)}
             >
               Contact
-              <svg
-                width="16"
-                height="12"
-                viewBox="0 0 16 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M13.1237 4.81222L9.45487 1.14342L10.5155 0.0827573L15.9956 5.56283L10.5155 11.0429L9.45487 9.98225L13.1249 6.31222L0.187622 6.31226L0.187622 4.81226L13.1237 4.81222Z"
-                  fill="#fff"
-                />
-              </svg>
             </Link>
           </div>
+
+          {/* Close Button at bottom right */}
+          <button
+            type="button"
+            className="absolute bottom-12 right-8 flex h-20 w-20 items-center justify-center rounded-full border border-black transition-transform active:scale-90"
+            onClick={() => setMobileMenuOpen(false)}
+            aria-label="Close Mobile Nav"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M18 6L6 18M6 6L18 18"
+                stroke="black"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     </header>

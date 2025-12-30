@@ -34,6 +34,166 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Hide scrollbar */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Awards hover effect - grey out non-hovered items */
+.awards-container:hover .award-item:not(:hover) {
+  opacity: 0.3;
+}
+
+.awards-container:hover .award-item:not(:hover) .award-description {
+  display: none;
+}
+
+/* Case Studies hover effect - grey out non-hovered items */
+.case-studies-container:hover .case-study-card:not(:hover) {
+  opacity: 0.3;
+}
+
+/* Tabs Block Styles */
+.tabs-block {
+  padding-top: 160px !important;
+  padding-bottom: 160px !important;
+}
+
+@media (max-width: 1580px) {
+  .tabs-block {
+    padding-top: 80px !important;
+    padding-bottom: 80px !important;
+  }
+}
+
+.tabs-block .tabs-btns {
+  display: flex;
+}
+
+.tabs-block .tabs-btns .tab-btn {
+  opacity: 0.3;
+  text-align: left;
+  margin: 0 40px 0 0;
+  padding: 0;
+  transition: all 0.3s;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.tabs-block .tabs-btns .tab-btn.active,
+.tabs-block .tabs-btns .tab-btn:hover {
+  opacity: 1;
+}
+
+.tabs-block .tabs-content {
+  width: 100%;
+  margin: 0;
+}
+
+.tabs-block .tab-content {
+  visibility: hidden;
+  opacity: 0;
+  width: 100%;
+  margin: 64px 0 0;
+  position: absolute;
+  top: -9999em;
+  left: 0;
+}
+
+.tabs-block .tab-content.active {
+  visibility: visible;
+  opacity: 1;
+  position: relative;
+  top: 0;
+}
+
+.tab-cards-wrapper {
+  gap: 24px;
+  width: 100%;
+  display: flex;
+  overflow: auto hidden;
+}
+
+.tab-cards-wrapper.card_list_type1,
+.tab-cards-wrapper.card_list_type2 {
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  width: calc(100% + 80px);
+}
+
+@media (max-width: 767px) {
+  .tab-cards-wrapper.card_list_type1,
+  .tab-cards-wrapper.card_list_type2 {
+    width: 100%;
+  }
+}
+
+.tab-cards-wrapper .scroll-nav {
+  display: flex;
+  position: absolute;
+  top: -116px;
+  right: 0;
+}
+
+@media (max-width: 767px) {
+  .tab-cards-wrapper .scroll-nav {
+    display: none;
+  }
+}
+
+.tab-card {
+  scroll-snap-align: start;
+  margin: 0;
+  padding: 32px;
+  transition: max-height 0.4s cubic-bezier(0.89, 0.34, 0.2, 0.83);
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-card:hover .content {
+  opacity: 1;
+  transform: scaleY(1) translateY(0);
+}
+
+.card_list_type1 .tab-card {
+  color: #404042;
+  background: #e8eaf2;
+  border-radius: 12px;
+  flex: 0 0 32%;
+  max-width: 450px;
+  min-height: 280px;
+  padding: 32px;
+}
+
+@media (max-width: 767px) {
+  .card_list_type1 .tab-card {
+    flex: 0 0 88%;
+  }
+}
+
+.card_list_type1 .tab-card .duration {
+  color: #404042;
+  opacity: 0.7;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.card_list_type1 .tab-card .title {
+  color: #404042;
+  margin: 0;
+}
+
+.card_list_type1 .tab-card .content {
+  color: #404042;
+  padding: 24px 0 0;
+}
+
 /* Remove default focus outline and add custom */
 *:focus-visible {
   outline: 2px solid var(--primary);
@@ -172,6 +332,11 @@ html {
   transition: left 0.5s ease;
 }
 
-.contact-us:hover::before {
-  left: 100%;
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease forwards;
 }

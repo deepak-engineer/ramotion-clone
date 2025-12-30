@@ -3,6 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const clients = [
   {
@@ -102,33 +106,49 @@ const clients = [
   },
 ];
 
-export default function ClientsSection() {
+interface ClientsSectionProps {
+  title?: React.ReactNode;
+  description?: string;
+  showCta?: boolean;
+}
+
+export default function ClientsSection({
+  title = <>For companies with<br />tech leverage</>,
+  description = "We specialize in working with digital products and brands, regardless of the size and lifecycle stage, from startups to established businesses striving to achieve significant tech leverage.",
+  showCta = true
+}: ClientsSectionProps) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [animatedItems, setAnimatedItems] = useState<Set<number>>(new Set());
   const sectionRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Stagger the animations
-            clients.forEach((_, index) => {
-              setTimeout(() => {
-                setAnimatedItems((prev) => new Set([...prev, index]));
-              }, index * 100);
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+    const ctx = gsap.context(() => {
+      if (!gridRef.current) return;
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
+      const items = gridRef.current.children;
 
-    return () => observer.disconnect();
+      gsap.fromTo(
+        items,
+        {
+          opacity: 0,
+          y: 30,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: gridRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -144,39 +164,36 @@ export default function ClientsSection() {
               {/* Left Column - Title */}
               <div className="w-1/2 max-[1024px]:mb-8 max-[1024px]:w-full">
                 <h2 className="mt-0 w-4/5 text-left text-[48px] font-semibold leading-[1.2] text-[#262626] max-[1024px]:text-[24px]">
-                  For companies with
-                  <br />
-                  tech leverage
+                  {title}
                 </h2>
-                <Link
-                  href="/work"
-                  className="group mt-4 inline-flex items-center gap-2 text-[16px] text-[#262626] transition-colors"
-                >
-                  All works
-                  <span className="inline-block transition-transform group-hover:translate-x-1">
-                    <svg
-                      width="16"
-                      height="12"
-                      viewBox="0 0 16 12"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M13.1237 4.81222L9.45487 1.14342L10.5155 0.0827573L15.9956 5.56283L10.5155 11.0429L9.45487 9.98225L13.1249 6.31222L0.187622 6.31226L0.187622 4.81226L13.1237 4.81222Z"
-                        fill="#262626"
-                      />
-                    </svg>
-                  </span>
-                </Link>
+                {showCta && (
+                  <Link
+                    href="/work"
+                    className="group mt-4 inline-flex items-center gap-2 text-[16px] text-[#262626] transition-colors"
+                  >
+                    All works
+                    <span className="inline-block transition-transform group-hover:translate-x-1">
+                      <svg
+                        width="16"
+                        height="12"
+                        viewBox="0 0 16 12"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M13.1237 4.81222L9.45487 1.14342L10.5155 0.0827573L15.9956 5.56283L10.5155 11.0429L9.45487 9.98225L13.1249 6.31222L0.187622 6.31226L0.187622 4.81226L13.1237 4.81222Z"
+                          fill="#262626"
+                        />
+                      </svg>
+                    </span>
+                  </Link>
+                )}
               </div>
 
               {/* Right Column - Description */}
               <div className="w-1/2 max-[1024px]:w-full max-[1024px]:pl-16 max-[767px]:pl-0">
                 <p className="m-0 p-0 text-[16px] leading-[1.5] text-[#262626] shadow-none">
-                  We specialize in working with digital products and brands,
-                  regardless of the size and lifecycle stage, from startups to
-                  established businesses striving to achieve significant tech
-                  leverage.
+                  {description}
                 </p>
               </div>
             </div>
@@ -184,20 +201,16 @@ export default function ClientsSection() {
 
           {/* Logos Grid */}
           <div
+            ref={gridRef}
             className="relative mt-14 grid w-full grid-cols-5 gap-x-[75px] gap-y-6 max-[767px]:grid-cols-3 max-[767px]:gap-4"
           >
             {clients.map((client, index) => (
               <div
                 key={client.name}
-                className={`relative transition-all duration-300 ease-in ${
-                  animatedItems.has(index)
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-10 opacity-0"
-                } ${
-                  hoveredIndex !== null && hoveredIndex !== index
-                    ? "!opacity-[0.05] grayscale"
-                    : ""
-                }`}
+                className={`relative opacity-0 transition-opacity duration-300 ease-in ${hoveredIndex !== null && hoveredIndex !== index
+                  ? "!opacity-[0.05] grayscale"
+                  : ""
+                  }`}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
@@ -215,9 +228,8 @@ export default function ClientsSection() {
 
                   {/* Description Tooltip */}
                   <div
-                    className={`pointer-events-none absolute top-0 z-10 flex min-h-[108px] w-[220px] translate-y-10 items-center bg-[#fafafa] p-2 opacity-0 transition-all duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100 max-[1024px]:hidden ${
-                      (index + 1) % 5 === 0 ? "right-full" : "left-full"
-                    }`}
+                    className={`pointer-events-none absolute top-0 z-10 flex min-h-[108px] w-[220px] translate-y-10 items-center bg-[#fafafa] p-2 opacity-0 transition-all duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100 max-[1024px]:hidden ${(index + 1) % 5 === 0 ? "right-full" : "left-full"
+                      }`}
                   >
                     <p className="relative m-0 block w-full text-[16px] leading-[1.5] text-[#262626]">
                       {client.description}

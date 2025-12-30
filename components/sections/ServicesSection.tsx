@@ -319,20 +319,55 @@ export default function ServicesSection() {
             {/* Left Column - Title */}
             <div className="w-1/2 max-[1024px]:mb-8 max-[1024px]:w-full">
               <h2 className="mt-0 text-left text-[48px] font-semibold leading-[1.2] text-[#262626] max-[1024px]:text-[24px]">
-                At the intersection of
+                Services that drive
                 <br />
-                product and brand
+                <span className="text-[#6d0900]">real results</span>
               </h2>
             </div>
 
-            {/* Right Column - Description */}
+            {/* Right Column - Description & CTA */}
             <div className="w-1/2 max-[1024px]:w-full">
-              <p className="m-0 p-0 text-[16px] leading-[1.5] text-[#262626]">
-                With over 15 years of experience in the industry, our offerings
-                have evolved into a set of services that complement each other
-                and allow us to design, develop, implement, maintain, and extend
-                a consistent experience across all touchpoints.
+              <p className="m-0 mb-6 p-0 text-[16px] leading-[1.5] text-[#262626]">
+                With over 15 years of experience, our services complement each other to create cohesive experiences that drive growth and engagement.
               </p>
+              <Link
+                href="/contact"
+                className="group relative flex items-center overflow-hidden rounded-[20px] border border-[#6d0900] text-[16px] leading-[1.5] tracking-[-0.4px] text-[#6d0900]"
+              >
+                <span className="relative z-[1] flex w-full items-center justify-center px-6 py-1.5 transition-all duration-300">
+                  Get started
+                  <svg
+                    width="16"
+                    height="12"
+                    viewBox="0 0 16 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  >
+                    <path
+                      d="M13.1237 4.81222L9.45487 1.14342L10.5155 0.0827573L15.9956 5.56283L10.5155 11.0429L9.45487 9.98225L13.1249 6.31222L0.187622 6.31226L0.187622 4.81226L13.1237 4.81222Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+                <span className="absolute inset-0 z-[2] flex items-center justify-center text-white opacity-0 transition-all duration-300 group-hover:opacity-100">
+                  Get started
+                  <svg
+                    width="16"
+                    height="12"
+                    viewBox="0 0 16 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  >
+                    <path
+                      d="M13.1237 4.81222L9.45487 1.14342L10.5155 0.0827573L15.9956 5.56283L10.5155 11.0429L9.45487 9.98225L13.1249 6.31222L0.187622 6.31226L0.187622 4.81226L13.1237 4.81222Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+                <span className="absolute inset-0 origin-right scale-x-0 rounded-[20px] bg-[#6d0900] transition-transform duration-300 group-hover:origin-left group-hover:scale-x-100" />
+              </Link>
             </div>
           </div>
         </div>

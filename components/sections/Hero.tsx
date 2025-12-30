@@ -36,15 +36,70 @@ export default function Hero() {
       <div className="mx-auto w-full max-w-[1312px] px-4">
         <div className="flex w-full flex-col items-center justify-center px-4 py-[184px] max-[1580px]:py-[140px] max-[1024px]:py-[128px] max-[1024px]:pb-16">
           <h1 className="mb-8 text-center text-[92px] font-semibold leading-[1.1] tracking-[-0.2rem] text-[#262626] max-[1024px]:text-[48px] max-[1024px]:tracking-[-0.1rem]">
-            Product & brand
+            <span className="text-[#6d0900]">Transform</span> your brand,
             <br className="max-[1580px]:hidden" />
             <span className="max-[1580px]:inline"> </span>
-            design agency
+            amplify your impact
           </h1>
-          <p className="m-0 max-w-[980px] text-center text-[18px] leading-[1.55] text-[#262626]">
-            We help marketing & product executives build impactful brands,
-            engage users, and drive growth
+          <p className="m-0 mb-8 max-w-[980px] text-center text-[18px] leading-[1.55] text-[#262626]">
+            We help marketing & product executives build unforgettable brands,
+            engage users, and create lasting business growth
           </p>
+          <div className="flex flex-col items-center gap-4">
+            <Link
+              href="/work"
+              className="group relative flex items-center overflow-hidden rounded-[20px] border border-[#262626] text-[16px] leading-[1.5] tracking-[-0.4px] text-[#262626]"
+            >
+              <span className="relative z-[1] flex w-full items-center justify-center px-6 py-1.5 transition-all duration-300">
+                Explore our work
+              </span>
+              <span className="absolute inset-0 z-[2] flex items-center justify-center bg-[#262626] text-[#fafafa] opacity-0 transition-all duration-300 group-hover:opacity-100">
+                Explore our work
+              </span>
+              <span className="absolute inset-0 origin-right scale-x-0 rounded-[20px] bg-[#262626] transition-transform duration-300 group-hover:origin-left group-hover:scale-x-100" />
+            </Link>
+            <Link
+              href="/contact"
+              className="group relative flex items-center overflow-hidden rounded-[20px] border border-[#262626] bg-[#262626] text-[16px] leading-[1.5] tracking-[-0.4px] text-white"
+            >
+              <span className="relative z-[1] flex w-full items-center justify-center gap-1 px-6 py-1.5 transition-all duration-300">
+                Start your project
+                <span className="relative top-[2px] inline-block w-[18px] overflow-hidden">
+                  <svg
+                    width="16"
+                    height="12"
+                    viewBox="0 0 16 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="transition-transform duration-300 group-hover:translate-x-0"
+                  >
+                    <path
+                      d="M13.1237 4.81222L9.45487 1.14342L10.5155 0.0827573L15.9956 5.56283L10.5155 11.0429L9.45487 9.98225L13.1249 6.31222L0.187622 6.31226L0.187622 4.81226L13.1237 4.81222Z"
+                      fill="#fff"
+                    />
+                  </svg>
+                </span>
+              </span>
+              <span className="absolute inset-0 z-[2] flex items-center justify-center gap-1 text-[#262626] opacity-0 transition-all duration-300 group-hover:opacity-100">
+                Start your project
+                <span className="relative top-[2px] inline-block w-[18px] overflow-hidden">
+                  <svg
+                    width="16"
+                    height="12"
+                    viewBox="0 0 16 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M13.1237 4.81222L9.45487 1.14342L10.5155 0.0827573L15.9956 5.56283L10.5155 11.0429L9.45487 9.98225L13.1249 6.31222L0.187622 6.31226L0.187622 4.81226L13.1237 4.81222Z"
+                      fill="#262626"
+                    />
+                  </svg>
+                </span>
+              </span>
+              <span className="absolute inset-0 origin-right scale-x-0 rounded-[20px] bg-[#fafafa] transition-transform duration-300 group-hover:origin-left group-hover:scale-x-100" />
+            </Link>
+          </div>
         </div>
       </div>
 

@@ -5,51 +5,39 @@ import Link from "next/link";
 
 const testimonials = [
   {
-    company: "Turo",
-    logo: "https://www.datocms-assets.com/22695/1715843760-turo-c.svg",
+    company: "Volusion",
+    logo: "https://www.datocms-assets.com/22695/1715843813-volusion-c.svg",
     quote:
-      "I have impossibly high expectations, and the talented team at Ramotion didn't disappoint. They delivered thoughtful, polished designs, and code that made an outsized, positive business impact by dramatically increasing our customers' ability to find and understand support site content.",
+      "Thankful for the Ramotion team for helping us take the Volusion brand to the next level. Couldn't have done it without them.",
     author: {
-      name: "Brian Beaver",
-      title: "VP of Design at Turo",
+      name: "Kevin Sproles",
+      title: "CEO at Volusion",
       avatar:
-        "https://www.datocms-assets.com/22695/1721911570-brianbeaver.webp",
+        "https://www.datocms-assets.com/22695/1721808040-kevinsproles.jpg",
     },
   },
   {
-    company: "Citrix",
-    logo: "https://www.datocms-assets.com/22695/1715843777-citrix-c.svg",
+    company: "Mobingi",
+    logo: "https://www.datocms-assets.com/22695/1715859187-mobingi-c.svg",
     quote:
-      "The Ramotion team is highly creative, responsive and collaborative. Over the years they have become an extension of our Product Design and Research team. Thank you for consistently delivering high quality Design under tight deadlines.",
+      "Within 3 months, our new brand was launched. Among industry and potential users, it increased our brand identity and recognition by roughly 66%.",
     author: {
-      name: "Malini Leveque",
-      title: "Vice President, Product Design and Research at Citrix",
+      name: "Wayland Zhang",
+      title: "Founder at Mobingi",
       avatar:
-        "https://www.datocms-assets.com/22695/1721807837-malinileveque.jpg",
+        "https://www.datocms-assets.com/22695/1721808061-wayland-zhang.jpg",
     },
   },
   {
-    company: "Mozilla",
-    logo: "https://www.datocms-assets.com/22695/1715843699-mozilla-c.svg",
+    company: "Open Colony",
+    logo: "https://www.datocms-assets.com/22695/1715859210-open-colony-c.svg",
     quote:
-      "Ramotion was fast and efficient without sacrificing quality. Their team of designers and developers brought our vision to life and we are thankful for their expertise.",
+      "As a result of a year of strategy, we hired Ramotion to help us relaunch our company brand, grow our audience, and introduce new services. They are extremely effective despite a largely remote team. I'd highlight their bang for the buck and their communication strengths.",
     author: {
-      name: "Dan Brown",
-      title: "Senior Marketing Manager at Mozilla",
+      name: "Caitlin Pulleyblank",
+      title: "CEO at Open Colony",
       avatar:
-        "https://www.datocms-assets.com/22695/1582121058-danbrown.jpg",
-    },
-  },
-  {
-    company: "Oppo",
-    logo: "https://www.datocms-assets.com/22695/1715843839-oppo-c.svg",
-    quote:
-      "We greatly enjoyed collaborating with Ramotion to create an innovative icon set for our ColorOS design system.",
-    author: {
-      name: "Chris Chen",
-      title: "Head of ColorOS Design Department at Oppo",
-      avatar:
-        "https://www.datocms-assets.com/22695/1721892111-chris-chen.webp",
+        "https://www.datocms-assets.com/22695/1721808082-caitlin-pulleyblank.jpg",
     },
   },
   {
@@ -65,42 +53,6 @@ const testimonials = [
     },
   },
   {
-    company: "Descript",
-    logo: "https://www.datocms-assets.com/22695/1715843789-descript-c.svg",
-    quote:
-      "They're very responsive and go above and beyond to meet our needs. We continue working with them, which is the best sign of our satisfaction.",
-    author: {
-      name: "Andrew Mason",
-      title: "CEO at Descript",
-      avatar:
-        "https://www.datocms-assets.com/22695/1721807925-andrewmason.jpg",
-    },
-  },
-  {
-    company: "Xero",
-    logo: "https://www.datocms-assets.com/22695/1715843826-xero-c.svg",
-    quote:
-      "We reached out to Ramotion for support on a significant update to our product. The team provided an expert that perfectly matched our needs and the resulting collaboration was a huge success. I definitely plan on working with them again.",
-    author: {
-      name: "Mark Opland",
-      title: "Product Design Director at Xero",
-      avatar:
-        "https://www.datocms-assets.com/22695/1721807985-markopland.jpg",
-    },
-  },
-  {
-    company: "Adobe",
-    logo: "https://www.datocms-assets.com/22695/1715843712-adobe-c.svg",
-    quote:
-      "Ramotion is a rock solid team. They combine an innate instinct for good design with a keen understanding for real world business challenges.",
-    author: {
-      name: "Khoi Vinh",
-      title: "Senior Director of Product Design at Adobe",
-      avatar:
-        "https://www.datocms-assets.com/22695/1721808003-khoivinh.jpg",
-    },
-  },
-  {
     company: "Redis",
     logo: "https://www.datocms-assets.com/22695/1715859220-redis-c.svg",
     quote:
@@ -113,27 +65,27 @@ const testimonials = [
     },
   },
   {
-    company: "Volusion",
-    logo: "https://www.datocms-assets.com/22695/1715843813-volusion-c.svg",
+    company: "Turo",
+    logo: "https://www.datocms-assets.com/22695/1715843760-turo-c.svg",
     quote:
-      "Thankful for the Ramotion team for helping us take the Volusion brand to the next level. Couldn't have done it without them.",
+      "I have impossibly high expectations, and the talented team at Ramotion didn't disappoint. They delivered thoughtful, polished designs, and code that made an outsized, positive business impact.",
     author: {
-      name: "Kevin Sproles",
-      title: "CEO at Volusion",
+      name: "Brian Beaver",
+      title: "VP of Design at Turo",
       avatar:
-        "https://www.datocms-assets.com/22695/1721808040-kevinsproles.jpg",
+        "https://www.datocms-assets.com/22695/1721911570-brianbeaver.webp",
     },
   },
   {
-    company: "Clearbit",
-    logo: "https://www.datocms-assets.com/22695/1715843801-clearbit-c.svg",
+    company: "Citrix",
+    logo: "https://www.datocms-assets.com/22695/1715843777-citrix-c.svg",
     quote:
-      "We partnered with Ramotion to redesign our entire marketing site from the ground up—new pages, messaging, graphics, and visual identity. Operating under an extremely tight timeline, they seamlessly integrated into our team and delivered at every phase of the project. The end result was a beautiful, functional, and high-converting website.",
+      "The Ramotion team is highly creative, responsive and collaborative. Over the years they have become an extension of our Product Design and Research team.",
     author: {
-      name: "Nick Wentz",
-      title: "VP Marketing at Clearbit",
+      name: "Malini Leveque",
+      title: "Vice President, Product Design and Research at Citrix",
       avatar:
-        "https://www.datocms-assets.com/22695/1700235573-nick-wentz.jpeg",
+        "https://www.datocms-assets.com/22695/1721807837-malinileveque.jpg",
     },
   },
 ];
@@ -161,30 +113,17 @@ export default function TestimonialsSection() {
         <div className="flex flex-wrap">
           {/* Left Column - Title */}
           <div className="w-1/3 max-[1024px]:mb-10 max-[1024px]:w-full">
-            <h2 className="mb-4 text-[48px] font-semibold leading-[1.2] text-[#262626] max-[1024px]:text-[32px]">
+            <h2 className="mb-4 text-[32px] font-semibold leading-[1.2] text-[#262626] max-[1024px]:text-[28px]">
               What our
               <br />
               partners say
             </h2>
             <Link
               href="/reviews"
-              className="group inline-flex items-center gap-2 text-[16px] text-[#262626] transition-colors"
+              className="group inline-flex items-center gap-2 text-[16px] font-medium text-[#262626]/60 transition-colors hover:text-[#262626]"
             >
               Reviews
-              <span className="inline-block transition-transform group-hover:translate-x-1">
-                <svg
-                  width="16"
-                  height="12"
-                  viewBox="0 0 16 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M13.1237 4.81222L9.45487 1.14342L10.5155 0.0827573L15.9956 5.56283L10.5155 11.0429L9.45487 9.98225L13.1249 6.31222L0.187622 6.31226L0.187622 4.81226L13.1237 4.81222Z"
-                    fill="#262626"
-                  />
-                </svg>
-              </span>
+              <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
             </Link>
           </div>
 
@@ -192,58 +131,28 @@ export default function TestimonialsSection() {
           <div className="w-2/3 max-[1024px]:w-full">
             <div className="testimonials-slider relative">
               {/* Slider Controls - Positioned at top right */}
-              <div className="controls absolute right-0 top-0 flex items-center gap-2 max-[1024px]:relative max-[1024px]:mb-6 max-[1024px]:justify-end">
+              <div className="controls absolute right-0 top-0 flex items-center gap-4 max-[1024px]:relative max-[1024px]:mb-6 max-[1024px]:justify-end">
                 <button
                   onClick={goToPrevious}
-                  className="flex h-12 w-12 items-center justify-center text-[#262626] transition-opacity hover:opacity-60"
+                  className="flex items-center justify-center text-[#262626] transition-opacity hover:opacity-60"
                   aria-label="Previous testimonial"
                 >
-                  <svg
-                    width="16"
-                    height="14"
-                    viewBox="0 0 16 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M7.65527 1.34412L1.99842 7.00097L7.65527 12.6578"
-                      stroke="#262626"
-                      strokeWidth="1.5"
-                    />
-                    <path
-                      d="M2.71093 6.9994L15.3665 7.00067"
-                      stroke="#262626"
-                      strokeWidth="1.5"
-                    />
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
                   </svg>
                 </button>
-                <div className="slides text-[14px] text-[#262626]">
-                  <span className="current">{currentIndex + 1}</span>
+                <div className="slides text-[14px] font-medium text-[#262626]/60">
+                  <span className="current text-[#262626]">{currentIndex + 1}</span>
                   {" / "}
                   <span className="all">{testimonials.length}</span>
                 </div>
                 <button
                   onClick={goToNext}
-                  className="flex h-12 w-12 items-center justify-center text-[#262626] transition-opacity hover:opacity-60"
+                  className="flex items-center justify-center text-[#262626] transition-opacity hover:opacity-60"
                   aria-label="Next testimonial"
                 >
-                  <svg
-                    width="15"
-                    height="14"
-                    viewBox="0 0 15 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M7.70996 1.34412L13.3668 7.00097L7.70996 12.6578"
-                      stroke="#262626"
-                      strokeWidth="1.5"
-                    />
-                    <path
-                      d="M12.6543 6.9994L-0.00127831 7.00067"
-                      stroke="#262626"
-                      strokeWidth="1.5"
-                    />
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
                 </button>
               </div>
@@ -252,33 +161,36 @@ export default function TestimonialsSection() {
               <div className="testimonials mt-[54px] max-[1024px]:mt-0">
                 <div className="testimonials-item" key={currentIndex}>
                   {/* Company Logo */}
-                  <div className="testimonials-logo mb-12 flex h-12 max-w-[180px] items-center max-[1024px]:mb-6 max-[1024px]:h-8 max-[1024px]:max-w-[120px]">
+                  <div className="testimonials-logo mb-12 flex h-8 items-center max-[1024px]:mb-6">
                     <img
                       src={currentTestimonial.logo}
                       alt={currentTestimonial.company}
-                      className="h-full w-auto max-w-full"
+                      className="h-full w-auto object-contain"
                     />
+                    <span className="ml-3 text-[32px] font-bold text-[#262626]">
+                      {currentTestimonial.company.toLowerCase()}
+                    </span>
                   </div>
 
                   {/* Quote */}
-                  <blockquote className="testimonials-quote mb-8 text-[24px] font-normal leading-[1.55] text-[#262626] max-[1024px]:text-[16px] max-[1024px]:leading-[1.5]">
-                    <p>{currentTestimonial.quote}</p>
+                  <blockquote className="testimonials-quote mb-12 text-[28px] font-normal leading-[1.5] text-[#262626] max-[1024px]:text-[18px]">
+                    <p>“{currentTestimonial.quote}”</p>
                   </blockquote>
 
                   {/* Author */}
-                  <div className="testimonials-author flex flex-wrap items-start gap-4">
-                    <div className="avatar h-20 w-20 overflow-hidden rounded-full max-[1024px]:h-12 max-[1024px]:w-12">
+                  <div className="testimonials-author flex flex-wrap items-center gap-6">
+                    <div className="avatar h-16 w-16 overflow-hidden rounded-full">
                       <img
                         src={currentTestimonial.author.avatar}
                         alt={currentTestimonial.author.name}
-                        className="h-full w-full rounded-full object-cover"
+                        className="h-full w-full object-cover"
                       />
                     </div>
-                    <div className="caption pt-2 text-[18px] leading-[1.55] max-[1024px]:pt-0 max-[1024px]:text-[16px]">
-                      <h3 className="m-0 p-0 text-[24px] font-medium leading-[1.4] text-[#262626] max-[1024px]:text-[18px]">
+                    <div className="caption">
+                      <h3 className="text-[20px] font-bold text-[#262626]">
                         {currentTestimonial.author.name}
                       </h3>
-                      <span className="block text-[#262626]">
+                      <span className="text-[16px] text-[#262626]/60">
                         {currentTestimonial.author.title}
                       </span>
                     </div>
@@ -289,34 +201,30 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        {/* Let's Talk Button */}
-        <div className="mt-24 flex justify-center max-[1024px]:mt-14">
+        {/* Let's Talk Button - Oval with down arrow and premium animation */}
+        <div className="mt-32 flex justify-center max-[1024px]:mt-16">
           <Link
             href="/contact"
-            className="contact-us group relative inline-flex items-center gap-8 overflow-hidden rounded-full bg-[#262626] px-10 py-5 text-[18px] font-medium text-white transition-all hover:bg-[#404040]"
+            className="group/btn relative flex min-w-[320px] items-center justify-center overflow-hidden rounded-full border border-gray-900 bg-white px-12 py-6 transition-all"
           >
-            <span className="relative z-10">Let's talk</span>
-            <span className="arrow relative z-10">
-              <svg
-                width="29"
-                height="28"
-                viewBox="0 0 29 28"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="transition-transform group-hover:translate-x-1"
-              >
-                <path
-                  d="M20.0625 6.57812L27.4871 14.0027L20.0625 21.4274"
-                  stroke="white"
-                  strokeWidth="1.5"
-                />
-                <path
-                  d="M27.4853 14.0009H0.514719"
-                  stroke="white"
-                  strokeWidth="1.5"
-                />
+            {/* Initial State */}
+            <span className="relative z-[1] flex items-center gap-12 text-[20px] font-medium text-[#262626] transition-all duration-300">
+              Let&apos;s talk
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover/btn:translate-y-1">
+                <path d="M12 5v14M19 12l-7 7-7-7" />
               </svg>
             </span>
+
+            {/* Hover State (Overlay) */}
+            <span className="absolute inset-0 z-[2] flex items-center justify-center gap-12 text-[20px] font-medium text-white opacity-0 transition-all duration-300 group-hover/btn:opacity-100">
+              Let&apos;s talk
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="translate-y-1">
+                <path d="M12 5v14M19 12l-7 7-7-7" />
+              </svg>
+            </span>
+
+            {/* Sliding Background */}
+            <span className="absolute inset-0 origin-right scale-x-0 bg-[#262626] transition-transform duration-500 ease-[cubic-bezier(0.85,0,0.15,1)] group-hover/btn:origin-left group-hover/btn:scale-x-100" />
           </Link>
         </div>
       </div>

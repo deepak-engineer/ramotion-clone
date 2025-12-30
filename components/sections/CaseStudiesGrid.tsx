@@ -188,11 +188,11 @@ function CaseStudyCard({
 
 export default function CaseStudiesGrid() {
   return (
-    <section className="bg-[#fafafa]">
+    <section className="bg-[#fafafa] py-[120px] max-[1024px]:py-14">
       <div className="mx-auto w-full max-w-[1312px] px-4">
         {/* Listboard grid: 8 columns with 60px gap */}
         <div
-          className="listboard grid gap-[60px] max-[1580px]:mt-8"
+          className="listboard grid gap-[60px]"
           style={{ gridTemplateColumns: "repeat(8, 1fr)" }}
         >
           {caseStudies.map((study, index) => (
