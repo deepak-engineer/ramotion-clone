@@ -1,137 +1,142 @@
-"use client";
+"use client"
 
-import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useRef, useState } from "react"
+import Link from "next/link"
+import Image from "next/image"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
 const clients = [
   {
     name: "Netflix",
     logo: "https://www.datocms-assets.com/22695/1715843667-netflix-c.svg",
-    description:
-      "Series of visual concepts for improving the user experience",
+    description: "Series of visual concepts for improving the user experience"
   },
   {
     name: "Stripe",
     logo: "https://www.datocms-assets.com/22695/1715843686-stripe-c.svg",
     description:
-      "We crafted Stripe's iconography, enhancing recognition and usability across millions of global transactions daily.",
+      "We crafted Stripe's iconography, enhancing recognition and usability across millions of global transactions daily."
   },
   {
     name: "Mozilla",
     logo: "https://www.datocms-assets.com/22695/1715843699-mozilla-c.svg",
     description:
       "Firefox's identity system enhanced brand recognition, improved user engagement, and reinforced its fast, private, user-centric identity.",
-    href: "/firefox-brand-redesign",
+    href: "/firefox-brand-redesign"
   },
   {
     name: "Adobe",
     logo: "https://www.datocms-assets.com/22695/1715843712-adobe-c.svg",
-    description: "Visual identity for Adobe-owned company products",
+    description: "Visual identity for Adobe-owned company products"
   },
   {
     name: "Opera",
     logo: "https://www.datocms-assets.com/22695/1715843733-opera-c.svg",
-    description: "Designing a motion identity for Opera",
+    description: "Designing a motion identity for Opera"
   },
   {
     name: "Okta",
     logo: "https://www.datocms-assets.com/22695/1715843747-okta-c.svg",
     description:
-      "We applied Okta's brand identity digitally, developed key assets, enhancing UX and supporting revenue growth.",
+      "We applied Okta's brand identity digitally, developed key assets, enhancing UX and supporting revenue growth."
   },
   {
     name: "Turo",
     logo: "https://www.datocms-assets.com/22695/1715843760-turo-c.svg",
     description:
       "A strategic redesign of Turo's support portal by our agency led to a 30% improvement in users' ability to find the answers they need.",
-    href: "/support-portal-redesign",
+    href: "/support-portal-redesign"
   },
   {
     name: "Citrix",
     logo: "https://www.datocms-assets.com/22695/1715843777-citrix-c.svg",
     description:
-      "Our iconography redesign for Citrix enhanced clarity and engagement, supporting 16M+ cloud users seamlessly.",
+      "Our iconography redesign for Citrix enhanced clarity and engagement, supporting 16M+ cloud users seamlessly."
   },
   {
     name: "Descript",
     logo: "https://www.datocms-assets.com/22695/1715843789-descript-c.svg",
     description:
       "Our team collaborated with Descript to develop their brand identity and website, driving brand recognition, user engagement and reach.",
-    href: "/descript-brand-identity-and-web-design",
+    href: "/descript-brand-identity-and-web-design"
   },
   {
     name: "Clearbit",
     logo: "https://www.datocms-assets.com/22695/1715843801-clearbit-c.svg",
     description:
       "We redesigned Clearbit's website, boosting engagement and contributing to their $150M acquisition by Hubspot.",
-    href: "/clearbit-website-transformation",
+    href: "/clearbit-website-transformation"
   },
   {
     name: "Volusion",
     logo: "https://www.datocms-assets.com/22695/1715843813-volusion-c.svg",
     description:
       "Branding elevated Volusion's identity, boosting recognition, engagement, and driving $29B+ in global merchant sales.",
-    href: "/volusion-brand-identity-redesign",
+    href: "/volusion-brand-identity-redesign"
   },
   {
     name: "Xero",
     logo: "https://www.datocms-assets.com/22695/1715843826-xero-c.svg",
     description:
-      "We delivered rapid UI prototyping for Xero, helping them scale to 4.2M+ global subscribers.",
+      "We delivered rapid UI prototyping for Xero, helping them scale to 4.2M+ global subscribers."
   },
   {
     name: "Oppo",
     logo: "https://www.datocms-assets.com/22695/1715843839-oppo-c.svg",
     description:
       "Iconography design for ColorOS contributed to OPPO's growth, now reaching over 500 million users.",
-    href: "/oppo-coloros-7-iconography-design",
+    href: "/oppo-coloros-7-iconography-design"
   },
   {
     name: "Salesforce",
     logo: "https://www.datocms-assets.com/22695/1715843855-salesforce-c.svg",
     description:
-      "Developing the Lightning Design System micro-interactions, boosting user engagement and efficiency, enhancing overall user satisfaction.",
+      "Developing the Lightning Design System micro-interactions, boosting user engagement and efficiency, enhancing overall user satisfaction."
   },
   {
     name: "Kyber Network",
     logo: "https://www.datocms-assets.com/22695/1715843866-kyber-network-c.svg",
     description:
       "We rebranded Kyber Network, enhancing visibility and engagement, contributing to its $10B+ trading volume milestone.",
-    href: "/kyber-network-blockchain-company-brand-design",
-  },
-];
+    href: "/kyber-network-blockchain-company-brand-design"
+  }
+]
 
 interface ClientsSectionProps {
-  title?: React.ReactNode;
-  description?: string;
-  showCta?: boolean;
+  title?: React.ReactNode
+  description?: string
+  showCta?: boolean
 }
 
 export default function ClientsSection({
-  title = <>For companies with<br />tech leverage</>,
+  title = (
+    <>
+      For companies with
+      <br />
+      tech leverage
+    </>
+  ),
   description = "We specialize in working with digital products and brands, regardless of the size and lifecycle stage, from startups to established businesses striving to achieve significant tech leverage.",
   showCta = true
 }: ClientsSectionProps) {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const gridRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      if (!gridRef.current) return;
+      if (!gridRef.current) return
 
-      const items = gridRef.current.children;
+      const items = gridRef.current.children
 
       gsap.fromTo(
         items,
         {
           opacity: 0,
-          y: 30,
+          y: 30
         },
         {
           opacity: 1,
@@ -142,14 +147,14 @@ export default function ClientsSection({
           scrollTrigger: {
             trigger: gridRef.current,
             start: "top 85%",
-            toggleActions: "play none none none",
-          },
+            toggleActions: "play none none none"
+          }
         }
-      );
-    }, sectionRef);
+      )
+    }, sectionRef)
 
-    return () => ctx.revert();
-  }, []);
+    return () => ctx.revert()
+  }, [])
 
   return (
     <section className="bg-[#fafafa]">
@@ -207,10 +212,11 @@ export default function ClientsSection({
             {clients.map((client, index) => (
               <div
                 key={client.name}
-                className={`relative opacity-0 transition-opacity duration-300 ease-in ${hoveredIndex !== null && hoveredIndex !== index
-                  ? "!opacity-[0.05] grayscale"
-                  : ""
-                  }`}
+                className={`relative opacity-0 transition-opacity duration-300 ease-in ${
+                  hoveredIndex !== null && hoveredIndex !== index
+                    ? "!opacity-[0.05] grayscale"
+                    : ""
+                }`}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
@@ -228,8 +234,9 @@ export default function ClientsSection({
 
                   {/* Description Tooltip */}
                   <div
-                    className={`pointer-events-none absolute top-0 z-10 flex min-h-[108px] w-[220px] translate-y-10 items-center bg-[#fafafa] p-2 opacity-0 transition-all duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100 max-[1024px]:hidden ${(index + 1) % 5 === 0 ? "right-full" : "left-full"
-                      }`}
+                    className={`pointer-events-none absolute top-0 z-10 flex min-h-[108px] w-[220px] translate-y-10 items-center bg-[#fafafa] p-2 opacity-0 transition-all duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100 max-[1024px]:hidden ${
+                      (index + 1) % 5 === 0 ? "right-full" : "left-full"
+                    }`}
                   >
                     <p className="relative m-0 block w-full text-[16px] leading-[1.5] text-[#262626]">
                       {client.description}
@@ -258,5 +265,5 @@ export default function ClientsSection({
         </div>
       </div>
     </section>
-  );
+  )
 }

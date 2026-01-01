@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import { useRef } from "react";
-import Link from "next/link";
+import { useRef } from "react"
+import Link from "next/link"
 
 const caseStudies = [
   {
@@ -12,7 +12,7 @@ const caseStudies = [
     video:
       "https://www.datocms-assets.com/22695/1757023931-upstream-cover-animation-1600-1200.mp4",
     description:
-      "Turning a complex carbon platform into a clear, intuitive product through full cycle design and development.",
+      "Turning a complex carbon platform into a clear, intuitive product through full cycle design and development."
   },
   {
     title: "Rizzle",
@@ -22,7 +22,7 @@ const caseStudies = [
     video:
       "https://www.datocms-assets.com/22695/1743620171-rizzle-new-cover-animation-1600-1200.mp4",
     description:
-      "Comprehensive redesign of Rizzle's branding, website, and product UI/UX propelled the platform to over 34 million monthly active users.",
+      "Comprehensive redesign of Rizzle's branding, website, and product UI/UX propelled the platform to over 34 million monthly active users."
   },
   {
     title: "Firefox",
@@ -31,7 +31,7 @@ const caseStudies = [
     video:
       "https://www.datocms-assets.com/22695/1728323207-cover-render-1-3.mp4",
     description:
-      "Firefox's identity system enhanced brand recognition, improved user engagement, and reinforced its fast, private, user-centric identity.",
+      "Firefox's identity system enhanced brand recognition and reinforced its user-centric identity."
   },
   {
     title: "Clearbit",
@@ -41,7 +41,7 @@ const caseStudies = [
     video:
       "https://www.datocms-assets.com/22695/1729287088-clearbit-preview-animation-1600-1200-2.mp4",
     description:
-      "We redesigned Clearbit's website, boosting engagement and contributing to their $150M acquisition by Hubspot.",
+      "Website redesign contributing to Clearbit’s $150M acquisition by HubSpot."
   },
   {
     title: "Turo",
@@ -50,8 +50,7 @@ const caseStudies = [
       "https://www.datocms-assets.com/22695/1764783462-turo-first-frame-cover-1600-1200.jpg",
     video:
       "https://www.datocms-assets.com/22695/1764784166-turo-cover-1600-1200.mp4",
-    description:
-      "A strategic redesign of Turo's support portal by our agency led to a 30% improvement in users' ability to find the answers they need.",
+    description: "Support portal redesign improving findability by over 30%."
   },
   {
     title: "Island",
@@ -61,7 +60,7 @@ const caseStudies = [
     video:
       "https://www.datocms-assets.com/22695/1750178411-island-cover-anim-1600-1200.mp4",
     description:
-      "Brand identity for the pioneering enterprise browser, supporting its growth to a $4.5B+ valuation and widespread adoption across the Fortune 50.",
+      "Enterprise browser brand identity supporting a $4.5B+ valuation."
   },
   {
     title: "Puzzle",
@@ -71,7 +70,7 @@ const caseStudies = [
     video:
       "https://www.datocms-assets.com/22695/1738084273-puzzle-cover-animation-1600-1200.mp4",
     description:
-      "UX-focused website redesign helped Puzzle.io grow 15% MoM, boosting engagement across 2,300+ businesses.",
+      "UX-focused redesign driving 15% MoM growth across 2,300+ businesses."
   },
   {
     title: "Holidu",
@@ -80,126 +79,101 @@ const caseStudies = [
       "https://www.datocms-assets.com/22695/1743522406-holidu-cover-static-alt-1600-1200.jpg",
     video:
       "https://www.datocms-assets.com/22695/1743524694-holidu-cover-animation-alt-1600-1200.mp4",
-    description:
-      "Rebrand and platform unification for Holidu, elevating brand clarity and reaching 100M annual users.",
-  },
-];
+    description: "Rebrand and platform unification reaching 100M annual users."
+  }
+]
 
-// Grid area definitions based on card index (1-indexed, repeats every 8)
-// Format: row-span / col-start / auto / col-span
-const getGridArea = (index: number): string => {
-  const position = (index % 8) + 1;
-  switch (position) {
+/* ---------- GRID POSITIONING ---------- */
+const getGridArea = (index: number) => {
+  const pos = (index % 8) + 1
+  switch (pos) {
     case 1:
-      return "span 3 / 1 / auto / span 5"; // Large left card
+      return "span 3 / 1 / auto / span 5"
     case 2:
     case 3:
-      return "span 2 / 6 / auto / span 3"; // Small right cards (stacked)
+      return "span 2 / 6 / auto / span 3"
     case 4:
-      return "span 2 / 1 / auto / span 4"; // Medium left card
+      return "span 2 / 1 / auto / span 4"
     case 5:
-      return "span 2 / 5 / auto / span 4"; // Medium right card
+      return "span 2 / 5 / auto / span 4"
     case 6:
-      return "span 2 / 1 / auto / span 3"; // Small left card
+      return "span 2 / 1 / auto / span 3"
     case 7:
-      return "span 3 / 4 / auto / span 5"; // Large right card
+      return "span 3 / 4 / auto / span 5"
     case 8:
-      return "span 2 / 1 / auto / span 3"; // Small left card
+      return "span 2 / 1 / auto / span 3"
     default:
-      return "span 2 / 1 / auto / span 4";
+      return "span 2 / 1 / auto / span 4"
   }
-};
+}
 
 function CaseStudyCard({
   study,
-  index,
+  index
 }: {
-  study: (typeof caseStudies)[0];
-  index: number;
+  study: (typeof caseStudies)[0]
+  index: number
 }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null)
 
-  const handleMouseEnter = () => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    }
-  };
+  const play = () => videoRef.current?.play().catch(() => {})
+  const stop = () => {
+    if (!videoRef.current) return
+    videoRef.current.pause()
+    videoRef.current.currentTime = 0
+  }
 
   return (
     <div
-      className="card group relative"
+      className="group relative"
       style={{ gridArea: getGridArea(index) }}
-      data-grid-index={index + 1}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={play}
+      onMouseLeave={stop}
     >
-      <div className="content">
-        {/* Invisible link overlay for accessibility */}
-        <Link
-          href={study.href}
-          className="absolute inset-0 z-[2] opacity-0"
-          aria-label={study.title}
+      <Link href={study.href} className="absolute inset-0 z-10" />
+
+      <div className="relative mb-5 overflow-hidden rounded-xl aspect-[4/3]">
+        <img
+          src={study.poster}
+          alt={study.title}
+          className="absolute inset-0 h-full w-full object-cover transition-all duration-500 group-hover:scale-110 group-hover:opacity-0"
+        />
+        <video
+          ref={videoRef}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 h-full w-full object-cover"
         >
-          {study.title}
-        </Link>
-
-        {/* Video Container */}
-        <div className="relative mb-5 h-0 overflow-hidden rounded-[12px] pb-[75%] md:mb-6 md:rounded-lg">
-          {/* Poster Image */}
-          <img
-            src={`${study.poster}?auto=format`}
-            alt={study.title}
-            className="absolute inset-0 h-full w-full object-cover transition-all duration-300 ease-in group-hover:scale-110 group-hover:opacity-0"
-          />
-          {/* Video */}
-          <video
-            ref={videoRef}
-            poster={`${study.poster}?auto=format`}
-            muted
-            playsInline
-            loop
-            preload="metadata"
-            className="pointer-events-none absolute left-1/2 top-1/2 z-[-1] w-full -translate-x-1/2 -translate-y-1/2"
-          >
-            <source src={study.video} type="video/mp4" />
-          </video>
-        </div>
-
-        {/* Title */}
-        <span className="mb-1 inline-block text-[32px] font-semibold leading-[1.2] text-[#262626]">
-          {study.title}
-        </span>
-
-        {/* Description - Hidden on desktop, visible on hover */}
-        <p className="m-0 translate-y-5 text-[16px] leading-[1.5] text-[#262626] opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 max-[1024px]:translate-y-0 max-[1024px]:text-[14px] max-[1024px]:opacity-100">
-          {study.description}
-        </p>
+          <source src={study.video} type="video/mp4" />
+        </video>
       </div>
+
+      <h3 className="text-[32px] font-semibold text-[#262626]">
+        {study.title}
+      </h3>
+
+      <p className="mt-2 max-w-[520px] translate-y-4 text-[16px] text-[#404040] opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 max-[1024px]:opacity-100 max-[1024px]:translate-y-0">
+        {study.description}
+      </p>
     </div>
-  );
+  )
 }
 
 export default function CaseStudiesGrid() {
   return (
-    <section className="bg-[#fafafa] py-[120px] max-[1024px]:py-14">
-      <div className="mx-auto w-full max-w-[1312px] px-4">
-        {/* Listboard grid: 8 columns with 60px gap */}
+    <section className="bg-[#fafafa] py-[120px] max-[1024px]:py-16">
+      <div className="mx-auto max-w-[1312px] px-4">
         <div
-          className="listboard grid gap-[60px]"
+          className="grid gap-[60px]"
           style={{ gridTemplateColumns: "repeat(8, 1fr)" }}
         >
-          {caseStudies.map((study, index) => (
-            <CaseStudyCard key={study.title} study={study} index={index} />
+          {caseStudies.map((study, i) => (
+            <CaseStudyCard key={study.title} study={study} index={i} />
           ))}
         </div>
       </div>
     </section>
-  );
+  )
 }
