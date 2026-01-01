@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
@@ -17,7 +17,7 @@ type FormData = {
 
 /* ===================== MAIN COMPONENT ===================== */
 
-export default function BookingCTA(): React.JSX.Element {
+export default function BookingCTA() {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const titleRef = useRef<HTMLHeadingElement | null>(null)
   const formRef = useRef<HTMLDivElement | null>(null)
@@ -111,12 +111,12 @@ export default function BookingCTA(): React.JSX.Element {
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ): void => {
+  ) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log("Form submitted:", formData)
   }
@@ -128,14 +128,7 @@ export default function BookingCTA(): React.JSX.Element {
       ref={containerRef}
       className="relative overflow-hidden bg-gradient-to-br from-[#6d0900] via-[#8b1a1a] to-[#4a0600] py-[120px]"
     >
-      {/* Background */}
-      <div className="absolute inset-0">
-        <div className="absolute left-[10%] top-[30%] h-[400px] w-[400px] rounded-full bg-white/10 blur-[80px]" />
-        <div className="absolute right-[15%] bottom-[20%] h-[600px] w-[600px] rounded-full bg-[#FFD1F3]/5 blur-[120px]" />
-      </div>
-
       <div className="relative mx-auto max-w-[1312px] px-4">
-        {/* Title */}
         <div className="mb-12 text-center">
           <h2 ref={titleRef} className="text-[48px] font-bold text-white">
             Ready to transform your brand?
@@ -146,7 +139,6 @@ export default function BookingCTA(): React.JSX.Element {
         </div>
 
         <div className="grid grid-cols-2 gap-16 max-lg:grid-cols-1">
-          {/* Form */}
           <div ref={formRef}>
             <h3 className="mb-8 text-[28px] font-semibold text-white">
               Start the conversation
@@ -160,7 +152,6 @@ export default function BookingCTA(): React.JSX.Element {
                   type="text"
                   value={formData.name}
                   onChange={handleInputChange}
-                  placeholder="John Doe"
                 />
 
                 <InputField
@@ -169,7 +160,6 @@ export default function BookingCTA(): React.JSX.Element {
                   type="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  placeholder="john@company.com"
                 />
               </div>
 
@@ -179,7 +169,6 @@ export default function BookingCTA(): React.JSX.Element {
                 type="text"
                 value={formData.company}
                 onChange={handleInputChange}
-                placeholder="Acme Inc."
               />
 
               <TextareaField
@@ -187,43 +176,15 @@ export default function BookingCTA(): React.JSX.Element {
                 name="project"
                 value={formData.project}
                 onChange={handleInputChange}
-                placeholder="What challenges are you trying to solve?"
               />
 
               <button
                 type="submit"
-                className="w-full rounded-xl bg-white py-4 text-[#6d0900] text-lg font-medium transition hover:scale-[1.02]"
+                className="w-full rounded-xl bg-white py-4 text-[#6d0900] text-lg font-medium"
               >
                 Send message
               </button>
             </form>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="mb-8 text-[28px] font-semibold text-white">
-              Other ways to connect
-            </h3>
-
-            <div className="space-y-6">
-              {["Direct Contact", "Schedule Call", "Our Offices"].map(
-                (item) => (
-                  <div
-                    key={item}
-                    className="rounded-xl border border-white/20 bg-white/5 p-6"
-                  >
-                    <h4 className="mb-2 text-white">{item}</h4>
-                    <p className="text-white/70">
-                      {item === "Direct Contact" && "Email: hello@ramotion.com"}
-                      {item === "Schedule Call" &&
-                        "Book a 30-minute discovery call"}
-                      {item === "Our Offices" &&
-                        "San Francisco • New York • London"}
-                    </p>
-                  </div>
-                )
-              )}
-            </div>
           </div>
         </div>
       </div>
@@ -239,17 +200,9 @@ type InputProps = {
   type: React.HTMLInputTypeAttribute
   value: string
   onChange: React.ChangeEventHandler<HTMLInputElement>
-  placeholder?: string
 }
 
-function InputField({
-  label,
-  name,
-  type,
-  value,
-  onChange,
-  placeholder
-}: InputProps): JSX.Element {
+function InputField({ label, name, type, value, onChange }: InputProps) {
   return (
     <div>
       <label className="mb-2 block text-sm text-white/80">{label}</label>
@@ -258,8 +211,7 @@ function InputField({
         type={type}
         value={value}
         onChange={onChange}
-        placeholder={placeholder}
-        className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/50 focus:outline-none"
+        className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white"
       />
     </div>
   )
@@ -270,16 +222,9 @@ type TextareaProps = {
   name: string
   value: string
   onChange: React.ChangeEventHandler<HTMLTextAreaElement>
-  placeholder?: string
 }
 
-function TextareaField({
-  label,
-  name,
-  value,
-  onChange,
-  placeholder
-}: TextareaProps): JSX.Element {
+function TextareaField({ label, name, value, onChange }: TextareaProps) {
   return (
     <div>
       <label className="mb-2 block text-sm text-white/80">{label}</label>
@@ -288,8 +233,7 @@ function TextareaField({
         rows={4}
         value={value}
         onChange={onChange}
-        placeholder={placeholder}
-        className="w-full resize-none rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/50 focus:outline-none"
+        className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white"
       />
     </div>
   )
