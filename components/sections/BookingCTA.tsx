@@ -1,10 +1,12 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
+
+/* ===================== TYPES ===================== */
 
 type FormData = {
   name: string
@@ -13,11 +15,13 @@ type FormData = {
   project: string
 }
 
-export default function BookingCTA() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const formRef = useRef<HTMLDivElement>(null)
-  const buttonsRef = useRef<HTMLDivElement>(null)
+/* ===================== MAIN COMPONENT ===================== */
+
+export default function BookingCTA(): JSX.Element {
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const titleRef = useRef<HTMLHeadingElement | null>(null)
+  const formRef = useRef<HTMLDivElement | null>(null)
+  const buttonsRef = useRef<HTMLDivElement | null>(null)
 
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -25,6 +29,8 @@ export default function BookingCTA() {
     company: "",
     project: ""
   })
+
+  /* ===================== ANIMATIONS ===================== */
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -37,7 +43,10 @@ export default function BookingCTA() {
             y: 0,
             duration: 1,
             ease: "power4.out",
-            scrollTrigger: { trigger: titleRef.current, start: "top 85%" }
+            scrollTrigger: {
+              trigger: titleRef.current,
+              start: "top 85%"
+            }
           }
         )
       }
@@ -52,7 +61,10 @@ export default function BookingCTA() {
             duration: 1,
             delay: 0.2,
             ease: "power3.out",
-            scrollTrigger: { trigger: formRef.current, start: "top 85%" }
+            scrollTrigger: {
+              trigger: formRef.current,
+              start: "top 85%"
+            }
           }
         )
 
@@ -65,7 +77,10 @@ export default function BookingCTA() {
             duration: 0.8,
             stagger: 0.1,
             ease: "power3.out",
-            scrollTrigger: { trigger: formRef.current, start: "top 85%" }
+            scrollTrigger: {
+              trigger: formRef.current,
+              start: "top 85%"
+            }
           }
         )
       }
@@ -80,7 +95,10 @@ export default function BookingCTA() {
             duration: 0.8,
             stagger: 0.15,
             ease: "back.out(1.7)",
-            scrollTrigger: { trigger: buttonsRef.current, start: "top 85%" }
+            scrollTrigger: {
+              trigger: buttonsRef.current,
+              start: "top 85%"
+            }
           }
         )
       }
@@ -89,53 +107,53 @@ export default function BookingCTA() {
     return () => ctx.revert()
   }, [])
 
+  /* ===================== HANDLERS ===================== */
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  ): void => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
     console.log("Form submitted:", formData)
   }
 
+  /* ===================== JSX ===================== */
+
   return (
     <section
       ref={containerRef}
-      className="relative overflow-hidden bg-gradient-to-br from-[#6d0900] via-[#8b1a1a] to-[#4a0600] py-[120px] max-[1024px]:py-[80px]"
+      className="relative overflow-hidden bg-gradient-to-br from-[#6d0900] via-[#8b1a1a] to-[#4a0600] py-[120px]"
     >
       {/* Background */}
       <div className="absolute inset-0">
-        <div className="absolute left-[10%] top-[30%] h-[400px] w-[400px] rounded-full bg-white opacity-10 blur-[80px]" />
-        <div className="absolute right-[15%] bottom-[20%] h-[600px] w-[600px] rounded-full bg-[#FFD1F3] opacity-5 blur-[120px]" />
-        <div className="absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white opacity-5 blur-[150px]" />
+        <div className="absolute left-[10%] top-[30%] h-[400px] w-[400px] rounded-full bg-white/10 blur-[80px]" />
+        <div className="absolute right-[15%] bottom-[20%] h-[600px] w-[600px] rounded-full bg-[#FFD1F3]/5 blur-[120px]" />
       </div>
 
-      <div className="relative mx-auto w-full max-w-[1312px] px-4">
+      <div className="relative mx-auto max-w-[1312px] px-4">
         {/* Title */}
-        <div className="mb-12 text-center max-[1024px]:mb-8">
-          <h2
-            ref={titleRef}
-            className="text-[48px] font-bold leading-[54px] text-white max-[1024px]:text-[32px]"
-          >
+        <div className="mb-12 text-center">
+          <h2 ref={titleRef} className="text-[48px] font-bold text-white">
             Ready to transform your brand?
           </h2>
-          <p className="mt-4 text-[20px] text-white/80 max-[1024px]:text-[18px]">
+          <p className="mt-4 text-white/80">
             Let's discuss how we can help you achieve your goals
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-16 max-[1024px]:grid-cols-1">
+        <div className="grid grid-cols-2 gap-16 max-lg:grid-cols-1">
           {/* Form */}
           <div ref={formRef}>
-            <h3 className="mb-8 text-[28px] font-semibold text-white max-[1024px]:text-[24px]">
+            <h3 className="mb-8 text-[28px] font-semibold text-white">
               Start the conversation
             </h3>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-2 gap-4 max-[640px]:grid-cols-1">
+              <div className="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
                 <InputField
                   label="Your Name *"
                   name="name"
@@ -144,6 +162,7 @@ export default function BookingCTA() {
                   onChange={handleInputChange}
                   placeholder="John Doe"
                 />
+
                 <InputField
                   label="Email Address *"
                   name="email"
@@ -173,40 +192,33 @@ export default function BookingCTA() {
 
               <button
                 type="submit"
-                className="group relative w-full rounded-[20px] border border-[#6d0900] bg-white py-4 text-[18px] text-[#6d0900] transition-all hover:scale-[1.02] active:scale-[0.98]"
+                className="w-full rounded-xl bg-white py-4 text-[#6d0900] text-lg font-medium transition hover:scale-[1.02]"
               >
-                <span className="relative z-10">Send message</span>
-                <span className="absolute inset-0 scale-x-0 origin-right rounded-[20px] bg-[#6d0900] transition-transform duration-300 group-hover:origin-left group-hover:scale-x-100" />
-                <span className="absolute inset-0 z-20 flex items-center justify-center text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  Send message
-                </span>
+                Send message
               </button>
             </form>
           </div>
 
-          {/* Contact Options */}
+          {/* Contact */}
           <div>
-            <h3 className="mb-8 text-[28px] font-semibold text-white max-[1024px]:text-[24px]">
+            <h3 className="mb-8 text-[28px] font-semibold text-white">
               Other ways to connect
             </h3>
 
-            <div className="space-y-8">
+            <div className="space-y-6">
               {["Direct Contact", "Schedule Call", "Our Offices"].map(
-                (section, idx) => (
+                (item) => (
                   <div
-                    key={idx}
-                    className="rounded-xl border border-white/20 bg-white/5 p-6 backdrop-blur-sm"
+                    key={item}
+                    className="rounded-xl border border-white/20 bg-white/5 p-6"
                   >
-                    <h4 className="mb-4 text-[20px] font-medium text-white">
-                      {section}
-                    </h4>
+                    <h4 className="mb-2 text-white">{item}</h4>
                     <p className="text-white/70">
-                      {section === "Direct Contact" &&
-                        "Email: hello@ramotion.com, Phone: +1-555-0123"}
-                      {section === "Schedule Call" &&
-                        "Book a 30-minute discovery call."}
-                      {section === "Our Offices" &&
-                        "San Francisco, CA | New York, NY | London, UK"}
+                      {item === "Direct Contact" && "Email: hello@ramotion.com"}
+                      {item === "Schedule Call" &&
+                        "Book a 30-minute discovery call"}
+                      {item === "Our Offices" &&
+                        "San Francisco • New York • London"}
                     </p>
                   </div>
                 )
@@ -214,36 +226,17 @@ export default function BookingCTA() {
             </div>
           </div>
         </div>
-
-        {/* Trust */}
-        <div ref={buttonsRef} className="mt-16 text-center">
-          <p className="mb-6 text-white/60">
-            Trusted by leading companies worldwide
-          </p>
-          <div className="flex flex-wrap justify-center gap-8 opacity-60">
-            {["Netflix", "Adobe", "Mozilla", "Salesforce", "Citrix"].map(
-              (company) => (
-                <span
-                  key={company}
-                  className="text-[14px] font-medium text-white"
-                >
-                  {company}
-                </span>
-              )
-            )}
-          </div>
-        </div>
       </div>
     </section>
   )
 }
 
-/* ---------------- Helper Components ---------------- */
+/* ===================== HELPER COMPONENTS ===================== */
 
 type InputProps = {
   label: string
   name: string
-  type: string
+  type: React.HTMLInputTypeAttribute
   value: string
   onChange: React.ChangeEventHandler<HTMLInputElement>
   placeholder?: string
@@ -256,19 +249,17 @@ function InputField({
   value,
   onChange,
   placeholder
-}: InputProps) {
+}: InputProps): JSX.Element {
   return (
     <div>
-      <label className="mb-2 block text-[14px] font-medium text-white/80">
-        {label}
-      </label>
+      <label className="mb-2 block text-sm text-white/80">{label}</label>
       <input
-        type={type}
         name={name}
+        type={type}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/50 backdrop-blur-sm focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/20"
+        className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/50 focus:outline-none"
       />
     </div>
   )
@@ -288,19 +279,17 @@ function TextareaField({
   value,
   onChange,
   placeholder
-}: TextareaProps) {
+}: TextareaProps): JSX.Element {
   return (
     <div>
-      <label className="mb-2 block text-[14px] font-medium text-white/80">
-        {label}
-      </label>
+      <label className="mb-2 block text-sm text-white/80">{label}</label>
       <textarea
         name={name}
         rows={4}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="w-full resize-none rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/50 backdrop-blur-sm focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/20"
+        className="w-full resize-none rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/50 focus:outline-none"
       />
     </div>
   )
