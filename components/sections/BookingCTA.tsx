@@ -17,7 +17,7 @@ type FormData = {
 
 /* ===================== MAIN COMPONENT ===================== */
 
-export default function BookingCTA(): JSX.Element {
+export default function BookingCTA(): React.JSX.Element {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const titleRef = useRef<HTMLHeadingElement | null>(null)
   const formRef = useRef<HTMLDivElement | null>(null)

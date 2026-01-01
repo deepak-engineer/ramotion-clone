@@ -1,22 +1,22 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import Link from "next/link";
+import { useState } from "react"
+import Link from "next/link"
 
 export default function NewsletterSection() {
-  const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [email, setEmail] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+    e.preventDefault()
+    setIsSubmitting(true)
     // TODO: Implement newsletter subscription API
     setTimeout(() => {
-      setIsSubmitting(false);
-      setEmail("");
-      alert("Thank you for subscribing!");
-    }, 1000);
-  };
+      setIsSubmitting(false)
+      setEmail("")
+      alert("Thank you for subscribing!")
+    }, 1000)
+  }
 
   return (
     <section className="bg-[#fafafa] border-t border-[#e5e5e5] py-[120px] max-[1024px]:py-14">
@@ -26,13 +26,14 @@ export default function NewsletterSection() {
             Sign up for our newsletter
           </h2>
           <p className="mb-10 max-w-[600px] text-[18px] leading-[1.5] text-[#262626]">
-            Insights, case studies, and updates from the expert teams at Ramotion.
+            Insights, case studies, and updates from the expert teams at
+            Ramotion.
           </p>
           <form
             onSubmit={handleSubmit}
             className="flex w-full max-w-[500px] gap-3 max-[640px]:flex-col"
           >
-            <input
+            <InputField
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -64,6 +65,5 @@ export default function NewsletterSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }
-
