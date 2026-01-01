@@ -1,11 +1,17 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import Link from "next/link"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger)
+
+type FormData = {
+  name: string
+  email: string
+  company: string
+  project: string
+}
 
 export default function BookingCTA() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -13,7 +19,7 @@ export default function BookingCTA() {
   const formRef = useRef<HTMLDivElement>(null)
   const buttonsRef = useRef<HTMLDivElement>(null)
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     company: "",
@@ -86,7 +92,8 @@ export default function BookingCTA() {
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -126,9 +133,10 @@ export default function BookingCTA() {
             <h3 className="mb-8 text-[28px] font-semibold text-white max-[1024px]:text-[24px]">
               Start the conversation
             </h3>
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-2 gap-4 max-[640px]:grid-cols-1">
-                <inputField
+                <InputField
                   label="Your Name *"
                   name="name"
                   type="text"
@@ -136,7 +144,7 @@ export default function BookingCTA() {
                   onChange={handleInputChange}
                   placeholder="John Doe"
                 />
-                <inputField
+                <InputField
                   label="Email Address *"
                   name="email"
                   type="email"
@@ -145,7 +153,8 @@ export default function BookingCTA() {
                   placeholder="john@company.com"
                 />
               </div>
-              <inputField
+
+              <InputField
                 label="Company Name"
                 name="company"
                 type="text"
@@ -153,19 +162,21 @@ export default function BookingCTA() {
                 onChange={handleInputChange}
                 placeholder="Acme Inc."
               />
-              <textareaField
+
+              <TextareaField
                 label="Tell us about your project"
                 name="project"
                 value={formData.project}
                 onChange={handleInputChange}
-                placeholder="What challenges are you trying to solve? What's your timeline?"
+                placeholder="What challenges are you trying to solve?"
               />
+
               <button
                 type="submit"
-                className="group relative w-full rounded-[20px] border border-[#6d0900] bg-white text-[#6d0900] text-[18px] py-4 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                className="group relative w-full rounded-[20px] border border-[#6d0900] bg-white py-4 text-[18px] text-[#6d0900] transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span className="relative z-10">Send message</span>
-                <span className="absolute inset-0 bg-[#6d0900] rounded-[20px] scale-x-0 origin-right transition-transform duration-300 group-hover:origin-left group-hover:scale-x-100" />
+                <span className="absolute inset-0 scale-x-0 origin-right rounded-[20px] bg-[#6d0900] transition-transform duration-300 group-hover:origin-left group-hover:scale-x-100" />
                 <span className="absolute inset-0 z-20 flex items-center justify-center text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   Send message
                 </span>
@@ -178,6 +189,7 @@ export default function BookingCTA() {
             <h3 className="mb-8 text-[28px] font-semibold text-white max-[1024px]:text-[24px]">
               Other ways to connect
             </h3>
+
             <div className="space-y-8">
               {["Direct Contact", "Schedule Call", "Our Offices"].map(
                 (section, idx) => (
@@ -189,7 +201,6 @@ export default function BookingCTA() {
                       {section}
                     </h4>
                     <p className="text-white/70">
-                      {/* Placeholder text */}
                       {section === "Direct Contact" &&
                         "Email: hello@ramotion.com, Phone: +1-555-0123"}
                       {section === "Schedule Call" &&
@@ -204,15 +215,18 @@ export default function BookingCTA() {
           </div>
         </div>
 
-        {/* Trust Indicators */}
+        {/* Trust */}
         <div ref={buttonsRef} className="mt-16 text-center">
           <p className="mb-6 text-white/60">
             Trusted by leading companies worldwide
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 opacity-60">
+          <div className="flex flex-wrap justify-center gap-8 opacity-60">
             {["Netflix", "Adobe", "Mozilla", "Salesforce", "Citrix"].map(
-              (company, idx) => (
-                <span key={idx} className="text-white font-medium text-[14px]">
+              (company) => (
+                <span
+                  key={company}
+                  className="text-[14px] font-medium text-white"
+                >
                   {company}
                 </span>
               )
@@ -224,8 +238,25 @@ export default function BookingCTA() {
   )
 }
 
-// Helper input component
-function inputField({ label, name, type, value, onChange, placeholder }: any) {
+/* ---------------- Helper Components ---------------- */
+
+type InputProps = {
+  label: string
+  name: string
+  type: string
+  value: string
+  onChange: React.ChangeEventHandler<HTMLInputElement>
+  placeholder?: string
+}
+
+function InputField({
+  label,
+  name,
+  type,
+  value,
+  onChange,
+  placeholder
+}: InputProps) {
   return (
     <div>
       <label className="mb-2 block text-[14px] font-medium text-white/80">
@@ -237,14 +268,27 @@ function inputField({ label, name, type, value, onChange, placeholder }: any) {
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/50 backdrop-blur-sm transition-all focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/20"
+        className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/50 backdrop-blur-sm focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/20"
       />
     </div>
   )
 }
 
-// Helper textarea component
-function textareaField({ label, name, value, onChange, placeholder }: any) {
+type TextareaProps = {
+  label: string
+  name: string
+  value: string
+  onChange: React.ChangeEventHandler<HTMLTextAreaElement>
+  placeholder?: string
+}
+
+function TextareaField({
+  label,
+  name,
+  value,
+  onChange,
+  placeholder
+}: TextareaProps) {
   return (
     <div>
       <label className="mb-2 block text-[14px] font-medium text-white/80">
@@ -256,7 +300,7 @@ function textareaField({ label, name, value, onChange, placeholder }: any) {
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/50 backdrop-blur-sm transition-all focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/20 resize-none"
+        className="w-full resize-none rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-white placeholder-white/50 backdrop-blur-sm focus:border-white/40 focus:outline-none focus:ring-2 focus:ring-white/20"
       />
     </div>
   )
